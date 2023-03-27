@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "py-spring-dataflow"
-version = "0.1"
+version = "0.2"
 description = "For working with Spring Cloud Data Flow"
 authors = ["Grig Alex <alexengrigdev@gmail.com>"]
 homepage = "https://github.com/airndlab/py-spring-dataflow"
