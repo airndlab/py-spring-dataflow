@@ -54,6 +54,10 @@ class Test(TestCase):
         enabled = is_enabled('True')
         self.assertTrue(enabled)
 
+    def test_is_enabled_with_false(self):
+        enabled = is_enabled(False)
+        self.assertFalse(enabled)
+
     def test_is_enabled_with_one(self):
         enabled = is_enabled('1')
         self.assertTrue(enabled)

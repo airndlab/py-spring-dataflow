@@ -50,4 +50,9 @@ def is_enabled(flag):
     :param flag: argument value as flag
     :return: enabled?
     """
-    return flag is True or flag.lower() in ('true', '1', 't', 'yes')
+    if flag is True:
+        return True
+    elif flag is False:
+        return False
+    else:
+        return flag.lower() in ('true', '1', 't', 'yes')
