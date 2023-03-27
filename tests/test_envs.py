@@ -15,3 +15,8 @@ class Test(TestCase):
         with self.assertRaises(Exception) as e:
             get_env('BAR')
         self.assertEqual(str(e.exception), 'No environment variable: BAR')
+
+    def test_get_env_with_default(self):
+        os.environ['FOO'] = 'bar'
+        env = get_env('BAR', 'foo')
+        self.assertEqual(env, 'foo')

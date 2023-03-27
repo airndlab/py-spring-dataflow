@@ -26,6 +26,11 @@ class Test(TestCase):
             get_arg('bar')
         self.assertEqual(str(e.exception), 'No command line argument: bar')
 
+    def test_get_arg_with_default(self):
+        sys.argv = ['test.py', 'foo']
+        arg = get_arg('test', 'foo')
+        self.assertEqual(arg, 'foo')
+
     def test_get_flag(self):
         sys.argv = ['test.py', 'foo=true']
         flag = get_flag('foo')
@@ -34,6 +39,11 @@ class Test(TestCase):
     def test_get_flag_without_value(self):
         sys.argv = ['test.py', 'foo']
         flag = get_flag('foo')
+        self.assertTrue(flag)
+
+    def test_get_flag_with_default(self):
+        sys.argv = ['test.py', 'foo']
+        flag = get_flag('test', 'True')
         self.assertTrue(flag)
 
     def test_is_enabled_without_value(self):

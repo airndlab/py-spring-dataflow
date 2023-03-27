@@ -9,10 +9,11 @@ def get_args():
     return sys.argv[1:]
 
 
-def get_arg(name):
+def get_arg(name, default=None):
     """
     Get command line argument value by name
     :param name: command line argument name
+    :param default: default command line argument value
     :return: command line argument value
     """
     args = get_args()
@@ -26,16 +27,20 @@ def get_arg(name):
                 value = arg_key_value[1]
                 return value
 
+    if default is not None:
+        return default
+
     raise Exception(f'No command line argument: {name}')
 
 
-def get_flag(name):
+def get_flag(name, default=None):
     """
     Get command line argument value by name as flag (True/False)
     :param name: command line argument name
+    :param default: default command line argument value as flag
     :return: command line argument value as flag
     """
-    value = get_arg(name)
+    value = get_arg(name, default)
     return is_enabled(value)
 
 

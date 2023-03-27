@@ -21,6 +21,11 @@ class Test(TestCase):
             get_param('test')
         self.assertEqual(str(e.exception), 'No command line argument: --test')
 
+    def test_get_param_with_default(self):
+        sys.argv = ['test.py', '--mode=test', 'foo=bar']
+        param = get_param('test', 'mode')
+        self.assertEqual(param, 'mode')
+
     def test_get_flag(self):
         sys.argv = ['test.py', '--mode', 'foo=bar']
         flag = get_flag('mode')
@@ -36,3 +41,8 @@ class Test(TestCase):
         with self.assertRaises(Exception) as e:
             get_flag('test')
         self.assertEqual(str(e.exception), 'No command line argument: --test')
+
+    def test_get_flag_with_default(self):
+        sys.argv = ['test.py', '--mode=false', 'foo=bar']
+        flag = get_flag('test', True)
+        self.assertTrue(flag)
